@@ -14,6 +14,22 @@
 typedef unsigned int symboleCount;
 typedef char symbole;
 
+typedef struct symboleOccurrence {
+    symbole symbol;
+    symboleCount count;
+    struct symboleOccurrence *next;
+} symboleOccurrence;
+
+/*
+    * freeSymbols
+    * 
+    * After calling dataGetSymbolsOccurrence, free the memory allocated for the symbols.
+    * 
+    * @param symbols: The list of symbols.
+    * @param symbol: The symbol to increment.
+*/
+void freeSymbols(symboleOccurrence *symbols);
+
 /*
     * dataGetSymbols
     * 
@@ -24,7 +40,7 @@ typedef char symbole;
     * 
     * @return: An array of symboleCount of lenght MAX_SYMBOLS, with the number of each simbole instances.
 */
-symboleCount *dataGetSymbolsOccurrence(const char *data, unsigned int len);
+symboleOccurrence *dataGetSymbolsOccurrence(const char *data, unsigned int len);
 
 /*
     * dataEntropy
